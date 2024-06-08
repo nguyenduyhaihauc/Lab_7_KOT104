@@ -1,4 +1,4 @@
-package duyndph34554.fpoly.lab_7.Bai2
+package duyndph34554.fpoly.lab_7.ui.navigation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -21,9 +21,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import duyndph34554.fpoly.lab_7.Bai3.LoginScreen
-import duyndph34554.fpoly.lab_7.MainViewModel
-import duyndph34554.fpoly.lab_7.MovieScreen
+import duyndph34554.fpoly.lab_7.ui.screen.LoginScreen
+import duyndph34554.fpoly.lab_7.model.MovieViewModel
+import duyndph34554.fpoly.lab_7.ui.screen.MovieScreen
 
 //Quan ly cac man hinh
 enum class Screen(val route: String) {
@@ -34,30 +34,30 @@ enum class Screen(val route: String) {
     SCREEN3("Screen3")
 }
 
-class Navigation : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            ScreenNavigation()
-        }
-    }
-}
+//class Navigation : ComponentActivity() {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContent {
+//            ScreenNavigation()
+//        }
+//    }
+//}
 //Cau hinh va quan ly cac Screen
 @Composable
-fun ScreenNavigation() {
+fun GetLayoutScreenNavigation() {
     val navController = rememberNavController()
 
-    val mainViewModel: MainViewModel = viewModel()
+    val mainViewModel: MovieViewModel = viewModel()
     val moviesState = mainViewModel.movies.observeAsState(initial = emptyList())
 
     NavHost(navController = navController,
         startDestination = Screen.LOGIN.route
     ) {
-        composable(Screen.LOGIN.route) { LoginScreen(navController = navController)}
+        composable(Screen.LOGIN.route) { LoginScreen(navController = navController) }
         composable(Screen.MOVIE_SCREEN.route) { MovieScreen(movie = moviesState.value)}
-        composable(Screen.SCREEN1.route) { Screen1(navController = navController)}
-        composable(Screen.SCREEN2.route) { Screen2(navController = navController)}
-        composable(Screen.SCREEN3.route) { Screen3(navController = navController)}
+        composable(Screen.SCREEN1.route) { Screen1(navController = navController) }
+        composable(Screen.SCREEN2.route) { Screen2(navController = navController) }
+        composable(Screen.SCREEN3.route) { Screen3(navController = navController) }
     }
 }
 

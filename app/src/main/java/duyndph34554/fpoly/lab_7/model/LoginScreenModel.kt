@@ -1,4 +1,4 @@
-package duyndph34554.fpoly.lab_7.Bai3
+package duyndph34554.fpoly.lab_7.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
